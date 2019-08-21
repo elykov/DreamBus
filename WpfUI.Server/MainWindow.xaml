@@ -1,0 +1,102 @@
+﻿<Window x:Class="WpfUI.Server.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfUI.Server"
+        mc:Ignorable="d"
+        Title="DreamBus (Сервер)" Height="450" Width="800"
+        Closing="Window_Closing" Closed="Window_Closed">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Данные о сервере">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top" Margin="40 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Margin="10 0">IP-Адрес:</Label>
+
+                        <ComboBox Name="comboBoxIP" Grid.Column="1" SelectedIndex="0"></ComboBox>
+
+                        <Label Margin="10 0" Grid.Column="2">Порт:</Label>
+
+                        <TextBox Name="textBoxPort" Grid.Column="3">9000</TextBox>
+
+                        <Button Margin="10 0" Name="buttonStartServer" Click="ButtonStartServer_Click" Grid.Column="4">Включить сервер</Button>
+                    </Grid>
+
+                    <ListView Name="listViewHistory">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Время" Width="150" DisplayMemberBinding="{Binding Path=Time}"/>
+                                <GridViewColumn Header="Статус" Width="150" DisplayMemberBinding="{Binding Path=Status}"/>
+                                <GridViewColumn Header="Данные" Width="400" DisplayMemberBinding="{Binding Path=DataView}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Области">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Margin="10 0 0 0">Добавить область:</Label>
+                        <TextBox Name="textBoxRegionTitle" Grid.Column="1" Margin="10 0"></TextBox>
+                        <Button Name="buttonAddRegion" Click="ButtonAddRegion_Click"
+                                Margin="10 0" Grid.Column="3">Добавить</Button>
+                    </Grid>
+                    <ListView Name="listViewRegions">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"></GridViewColumn>
+                                <GridViewColumn Header="Область" DisplayMemberBinding="{Binding Path=Title}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Города">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Margin="10 0 0 0">Добавить город:</Label>
+                        <TextBox Name="textBoxCityTitle" Grid.Column="1" Margin="5 0"></TextBox>
+
+                        <Label Margin="10 0 0 0" Grid.Column="2" >Область:</Label>
+                        <ComboBox Name="comboBoxRegions" Grid.Column="3" DisplayMemberPath="Title"></ComboBox>
+                        
+                        <Button Name="buttonAddCity" Click="ButtonAddCity_Click"
+                                Margin="5 0" Grid.Column="4">Добавить</Button>
+                    </Grid>
+                    <ListView Name="listViewCities">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"></GridViewColumn>
+                                <GridViewColumn Header="Город" DisplayMemberBinding="{Binding Path=Title}"></GridViewColumn>
+                                <GridViewColumn Header="Область" DisplayMemberBinding="{Binding Path=RegionTitle}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
