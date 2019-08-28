@@ -1,0 +1,13 @@
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\bin\Debug\DreamBusDBLayer.dll.config
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\bin\Debug\DreamBusDBLayer.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\bin\Debug\DreamBusDBLayer.pdb
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\bin\Debug\EntityFramework.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\bin\Debug\EntityFramework.SqlServer.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\bin\Debug\EntityFramework.xml
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\bin\Debug\EntityFramework.SqlServer.xml
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\obj\Debug\DreamBusDBLayer.csprojAssemblyReference.cache
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\obj\Debug\DreamBusDBLayer.csproj.CoreCompileInputs.cache
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\obj\Debug\DreamBusDBLayer.csproj.CopyComplete
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\obj\Debug\DreamBusDBLayer.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\obj\Debug\DreamBusDBLayer.pdb
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusDBLayer\bin\Debug\ru\EntityFramework.resources.dll

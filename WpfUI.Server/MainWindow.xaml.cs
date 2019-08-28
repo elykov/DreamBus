@@ -57,8 +57,8 @@ namespace WpfUI.Server
         public void Subscribes()
         {
             comboBoxRegions.ItemsSource = listViewRegions.ItemsSource = DBConnector.RegionService.GetAll();
-            listViewCities.ItemsSource = DBConnector.CityService.GetAll();
-
+            comboBoxNeighborCityFrom.ItemsSource = comboBoxNeighborCityTo.ItemsSource = listViewCities.ItemsSource = DBConnector.CityService.GetAll();
+            listViewNeighborCities.ItemsSource = DBConnector.NeighborCitiesService.GetAll();
         }
 
         #endregion
@@ -135,6 +135,10 @@ namespace WpfUI.Server
             textBoxRegionTitle.Clear();
         }
 
+        #endregion
+
+        #region Страница городов (3)
+
         private void ButtonAddCity_Click(object sender, RoutedEventArgs e)
         {
             if (textBoxCityTitle.Text.Length < 3)
@@ -178,7 +182,6 @@ namespace WpfUI.Server
         }
 
         #endregion
-
 
     }
 }

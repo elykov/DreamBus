@@ -62,12 +62,13 @@
   <ItemGroup>
     <Compile Include="DbConnector.cs" />
     <Compile Include="Models\CityDTO.cs" />
+    <Compile Include="Models\NeighborCitiesDTO.cs" />
     <Compile Include="Models\RegionDTO.cs" />
-    <Compile Include="Modules\ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AGenericService.cs" />
     <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\IGenericService.cs" />
+    <Compile Include="Services\NeighborCitiesService.cs" />
     <Compile Include="Services\RegionService.cs" />
   </ItemGroup>
   <ItemGroup />

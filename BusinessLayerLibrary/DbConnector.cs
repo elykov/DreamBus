@@ -14,12 +14,15 @@ namespace BusinessLayerLibrary
         DreamBusContext context;
         public CityService CityService { get; }
         public RegionService RegionService { get; }
+        public NeighborCitiesService NeighborCitiesService { get; }
+
 
         public DbConnector()
         {
             context = new DreamBusContext();
             CityService = new CityService(new CityRepository(context));
             RegionService = new RegionService(new RegionRepository(context));
+            NeighborCitiesService = new NeighborCitiesService(new NeighborCityRepository(context));
         }
     }
 }

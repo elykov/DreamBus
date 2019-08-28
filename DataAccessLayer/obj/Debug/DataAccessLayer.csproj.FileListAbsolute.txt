@@ -1,0 +1,16 @@
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\DataAccessLayer.dll.config
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\DreamBusDBLayer.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\EntityFramework.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\DreamBusDBLayer.pdb
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\DreamBusDBLayer.dll.config
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\EntityFramework.xml
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\obj\Debug\DataAccessLayer.csprojAssemblyReference.cache
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DataAccessLayer\bin\Debug\ru\EntityFramework.resources.dll

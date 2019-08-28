@@ -16,7 +16,8 @@ namespace DreamBusServer
 
         public override byte[] MessageParse(byte[] message)
         {
-            throw new NotImplementedException();
+            PrintLog(new Informator("Сервер", "Получены данные: " + message.ToString()));
+            return null;
         }
 
         public void PrintLog(Informator info)

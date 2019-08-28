@@ -52,9 +52,13 @@
   <ItemGroup>
     <Compile Include="BusInfo\Bus.cs" />
     <Compile Include="BusInfo\BusModel.cs" />
+    <Compile Include="BusInfo\BusSeat.cs" />
     <Compile Include="BusInfo\BusType.cs" />
     <Compile Include="RouteInfo\City.cs" />
     <Compile Include="DreamBusContext.cs" />
+    <Compile Include="RouteInfo\Flight.cs" />
+    <Compile Include="RouteInfo\MediumPath.cs" />
+    <Compile Include="RouteInfo\NeighborCity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteInfo\Region.cs" />
   </ItemGroup>
@@ -62,5 +66,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

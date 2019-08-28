@@ -1,0 +1,13 @@
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\bin\Debug\DreamBusContextTest.exe.config
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\bin\Debug\DreamBusContextTest.exe
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\bin\Debug\DreamBusContextTest.pdb
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\bin\Debug\EntityFramework.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\bin\Debug\EntityFramework.SqlServer.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\bin\Debug\EntityFramework.xml
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\bin\Debug\EntityFramework.SqlServer.xml
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\bin\Debug\ru\EntityFramework.resources.dll
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\obj\Debug\DreamBusContextTest.csprojAssemblyReference.cache
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\obj\Debug\DreamBusContextTest.csproj.CoreCompileInputs.cache
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\obj\Debug\DreamBusContextTest.csproj.CopyComplete
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\obj\Debug\DreamBusContextTest.exe
+E:\IT-STEP\Net\Курсовые\Курсовой .NET\DreamBus\DreamBusContextTest\obj\Debug\DreamBusContextTest.pdb
