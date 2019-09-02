@@ -24,12 +24,14 @@ Create table BusSeats (
 );
 go
 -- К примеру Богдан и Эталон - Одинаково, а производители разные, также качество - удобство (1 - 5 звезд).
-Create Table BusModels
+--alter Table BusModels
+--add constraint check_rate check(ComfortFactor < 6)
+create Table BusModels
 (
 	Id int not null primary key identity,
 	Brand nvarchar(50) not null,
 	BusTypeId int not null foreign key references BusTypes(Id),
-	ComfortFactor tinyint not null
+	ComfortFactor tinyint not null check(ComfortFactor < 6)
 );
 go
 --Автобусы - информация об одном автобусе: модель, госномер
@@ -42,7 +44,8 @@ go
 -- Области
 Create Table Regions(
 	Id int not null primary key identity,
-	Title nvarchar(50) not null 
+	Title nvarchar(50) not null
+	-- add rayon 
 );
 go
 -- Города
@@ -58,8 +61,7 @@ Create Table NeighborCities(
 	Id int not null primary key identity,
 	CityId int not null foreign key references Cities(Id),
 	NeighborId int not null foreign key references Cities(Id),
-	MinutesInPath int, -- желательно заполнить 
-	Distance float --опционально на всякий случай
+	MinutesInPath int not null
 );
 go
 -- Рейсы: хранят указатель на автобус
@@ -84,6 +86,76 @@ Create Table MediumPathes(
 );
 go
 
+select * from Buses
+select * from BusModels
+select * from BusTypes
+select * from BusSeats
+
+if ((select Count(*) from BusTypes) = 0)
+begin
+	insert BusTypes values 
+	(31, 1, 2500, 9750, 50, 50)
+end
+
+if ((select Count(*) from BusSeats) = 0)
+begin
+	insert BusSeats values
+	(1, 10, 0),
+	(1, 10, 50),
+	(1, 10, 100),
+	(1, 10, 150),
+	(1, 10, 200),
+	(1, 90, 0),
+	(1, 90, 50),
+	(1, 190, 0),
+	(1, 190, 50),
+	(1, 190, 150),
+	(1, 190, 200),
+	(1, 250, 0),
+	(1, 250, 50),
+	(1, 250, 150),
+	(1, 250, 200),
+	(1, 320, 0),
+	(1, 320, 50),
+	(1, 320, 150),
+	(1, 320, 200),
+	(1, 500, 0),
+	(1, 500, 50),
+	(1, 500, 150),
+	(1, 500, 200),
+	(1, 600, 0),
+	(1, 600, 50),
+	(1, 600, 150),
+	(1, 600, 200),
+	(1, 650, 0),
+	(1, 650, 50),
+	(1, 650, 150),
+	(1, 650, 200)
+end;
+
+if ((select Count(*) from BusModels) = 0)
+begin
+	insert BusModels values 
+	('Bogdan A1445', 1, 2)
+end
+
+if ((select Count(*) from Buses) = 0)
+begin
+	insert Buses values 
+	(1, 'AA 0001 KP')
+end
+
+
+
+
+--create procedure GetNeighborCities
+	--as 
+	--begin
+	--	select nc.Id as Id,  c1.Title StartCity, c2.Title EndCity, MinutesInPath from NeighborCities nc
+	--	join Cities c1 on CityId = c1.Id 
+	--	join Cities c2 on NeighborId = c2.Id 
+	--end
+
 insert Regions values 
 	('Киевская область'),
 	('Львовская область'),
@@ -105,11 +177,79 @@ insert Cities values
 	('Одесса', 4),
 	('Сумы', 5),
 	('Николаев', 6),
+	('Керчь', 7),
+	('Феодосия', 7),
 	('Армянск',	7),
+	('Красноперекопск',	7),
+	('Ишунь', 7),
+	('Воронцовка', 7),
+	('Ильинка', 7),
+	('Правда', 7),
+	('Матвеевка', 7),
+	('Первомайское', 7),
+	('Гришино', 7),
+	('Войково', 7),
+	('Воронцовка', 7),
+	('Трактовое', 7),
+	('Гвардейское', 7),
 	('Симферополь',	7),
+	('Приятное свидание', 7),
+	('Тополи', 7),
+	('Бахчисарай', 7),
+	('Железнодорожное', 7),
+	('Верхнесадовое', 7),
+	('Поворотное', 7),
+	('Инкерман', 7),
 	('Севастополь',	7);
 
-	select * from Regions
-	select * from Cities
-	select * from NeighborCities
+insert NeighborCities values
+	(7, 11, 25),
+	(11, 14, 7),
+	(14, 15, 13),
+	(15, 16, 8),
+	(16, 17, 7),
+	(17, 18, 4),
+	(18, 19, 3),
+	(19, 20, 20),
+	(20, 21, 20),
+	(21, 23, 25),
+	(23, 24, 25),
+	(24, 8, 15);
+
+--select * from NeighborCities
+--select * from Cities
+--where RegionId = 7
+
+select * from Buses
+
+insert Flights values 
+	(1), -- Армянск - Красноперекопск (8.00)
+	(1) -- Красноперекопск - Армянск (8.30)
+	--(), -- Армянск - Симферополь
+
+select * from Flights
+select * from MediumPathes
+
+-- продумать обратные пути
+
+insert MediumPathes values 
+	(1, 0, 4, '8:00:00')
+
+
+
+select * from Regions;
+select c.Id, c.Title, r.Title from Cities c
+join Regions r on c.RegionId = r.Id;
+
+exec GetNeighborCities;
+select * from Flights
+
+select * from MediumPathes
+ /*
+ Для того чтобы понять куда ехать можно добавить поле НазадЛи (IsReverse)
+ В приложении должен быть поиск между городами: есть ли такой набор городов, чтобы либо с одной стороны в другую или с другой.
+ */	
+
+
+
 

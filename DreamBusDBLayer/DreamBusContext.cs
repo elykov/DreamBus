@@ -18,7 +18,7 @@ namespace DreamBusDBLayer
         public virtual DbSet<BusType> BusTypes { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Flight> Flights { get; set; }
-        public virtual DbSet<MediumPath> MediumPathes { get; set; }
+        public virtual DbSet<MediumPathe> MediumPathes { get; set; }
         public virtual DbSet<NeighborCity> NeighborCities { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
 

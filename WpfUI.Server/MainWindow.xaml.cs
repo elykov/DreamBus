@@ -59,6 +59,8 @@ namespace WpfUI.Server
             comboBoxRegions.ItemsSource = listViewRegions.ItemsSource = DBConnector.RegionService.GetAll();
             comboBoxNeighborCityFrom.ItemsSource = comboBoxNeighborCityTo.ItemsSource = listViewCities.ItemsSource = DBConnector.CityService.GetAll();
             listViewNeighborCities.ItemsSource = DBConnector.NeighborCitiesService.GetAll();
+            listViewMediumPathes.ItemsSource = DBConnector.MediumPathService.GetAll();
+            listViewFlights.ItemsSource = DBConnector.FlightService.GetAll();
         }
 
         #endregion

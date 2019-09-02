@@ -2,24 +2,26 @@
 using DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayerLibrary.Services
 {
-    public abstract class AGenericService<T, D> : IGenericService<D>
+    public abstract class AGenericService<T, D> : IGenericService<D>, INotifyPropertyChanged
         where T : class, new()
         where D : class, new()
     {
+        
         IGenericRepository<T> repository;
         private readonly IMapper _mapper;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public AGenericService(IGenericRepository<T> repository)
         {
             this.repository = repository;
-            this._mapper = GetMapper();
+            _mapper = GetMapper();
         }
 
         abstract protected IMapper GetMapper();

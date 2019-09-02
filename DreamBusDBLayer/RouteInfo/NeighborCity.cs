@@ -7,7 +7,7 @@ namespace DreamBusDBLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NeighborCity()
         {
-            MediumPathes = new HashSet<MediumPath>();
+            MediumPathes = new HashSet<MediumPathe>();
         }
 
         public int Id { get; set; }
@@ -16,15 +16,13 @@ namespace DreamBusDBLayer
 
         public int NeighborId { get; set; }
 
-        public int? MinutesInPath { get; set; }
-
-        public double? Distance { get; set; }
+        public int MinutesInPath { get; set; }
 
         public virtual City City { get; set; }
 
         public virtual City Neighbor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MediumPath> MediumPathes { get; set; }
+        public virtual ICollection<MediumPathe> MediumPathes { get; set; }
     }
 }

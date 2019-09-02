@@ -11,7 +11,7 @@ namespace DreamBusDBLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Flight()
         {
-            MediumPathes = new HashSet<MediumPath>();
+            MediumPathes = new HashSet<MediumPathe>();
         }
 
         public int Id { get; set; }
@@ -21,6 +21,6 @@ namespace DreamBusDBLayer
         public virtual Bus Bus { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MediumPath> MediumPathes { get; set; }
+        public virtual ICollection<MediumPathe> MediumPathes { get; set; }
     }
 }

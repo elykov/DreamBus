@@ -61,17 +61,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbConnector.cs" />
-    <Compile Include="Models\CityDTO.cs" />
-    <Compile Include="Models\NeighborCitiesDTO.cs" />
-    <Compile Include="Models\RegionDTO.cs" />
+    <Compile Include="Models\BusInfoModels\BusDTO.cs" />
+    <Compile Include="Models\BusInfoModels\BusModelDTO.cs" />
+    <Compile Include="Models\BusInfoModels\BusSeatDTO.cs" />
+    <Compile Include="Models\BusInfoModels\BusTypeDTO.cs" />
+    <Compile Include="Models\RouteInfoModels\CityDTO.cs" />
+    <Compile Include="Models\RouteInfoModels\FlightDTO.cs" />
+    <Compile Include="Models\RouteInfoModels\MediumPathDTO.cs" />
+    <Compile Include="Models\RouteInfoModels\NeighborCitiesDTO.cs" />
+    <Compile Include="Models\RouteInfoModels\RegionDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AGenericService.cs" />
-    <Compile Include="Services\CityService.cs" />
+    <Compile Include="Services\RouteInfoServices\CityService.cs" />
+    <Compile Include="Services\RouteInfoServices\FlightService.cs" />
     <Compile Include="Services\IGenericService.cs" />
-    <Compile Include="Services\NeighborCitiesService.cs" />
-    <Compile Include="Services\RegionService.cs" />
+    <Compile Include="Services\RouteInfoServices\MediumPathService.cs" />
+    <Compile Include="Services\RouteInfoServices\NeighborCitiesService.cs" />
+    <Compile Include="Services\RouteInfoServices\RegionService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\BusInfoServices\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
       <Project>{85AD73E7-8750-4300-A57D-A275B7EBDEF2}</Project>
