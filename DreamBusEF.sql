@@ -7,7 +7,6 @@ go
 Create Table BusTypes
 (
 	Id int not null primary key identity,
-	PlacesCount int not null,
 	FloorCount int default 1 not null,
 	BusWidth int not null,
 	BusHeight int not null,
@@ -86,30 +85,11 @@ Create Table MediumPathes(
 );
 go
 
-select * from Buses
-select * from BusModels
-select * from BusTypes
-select * from BusSeats
-
 if ((select Count(*) from BusTypes) = 0)
 begin
 	insert BusTypes values 
 	(31, 1, 2500, 9750, 50, 50)
 end
-
-select * from BusSeats
-
-SET IDENTITY_INSERT IdentityTable ON
-
-insert BusSeats values
-	(1, 1, 10, 0)
-
-SET IDENTITY_INSERT IdentityTable OFF
-
-
-
-delete from BusSeats
-where id = 1
 
 if ((select Count(*) from BusSeats) = 0)
 begin
@@ -158,17 +138,6 @@ begin
 	insert Buses values 
 	(1, 'AA 0001 KP')
 end
-
-
-
-
---create procedure GetNeighborCities
-	--as 
-	--begin
-	--	select nc.Id as Id,  c1.Title StartCity, c2.Title EndCity, MinutesInPath from NeighborCities nc
-	--	join Cities c1 on CityId = c1.Id 
-	--	join Cities c2 on NeighborId = c2.Id 
-	--end
 
 insert Regions values 
 	('Киевская область'),
@@ -230,40 +199,44 @@ insert NeighborCities values
 	(23, 24, 25),
 	(24, 8, 15);
 
---select * from NeighborCities
---select * from Cities
---where RegionId = 7
-
-select * from Buses
-
 insert Flights values 
 	(1), -- Армянск - Красноперекопск (8.00)
 	(1) -- Красноперекопск - Армянск (8.30)
 	--(), -- Армянск - Симферополь
 
-select * from Flights
-select * from MediumPathes
-
--- продумать обратные пути
-
-insert MediumPathes values 
+-- Создание маршрута Армянск - Красноперекопск
+insert MediumPathes values  
 	(1, 0, 4, '8:00:00')
 
 
+--create procedure GetNeighborCities
+	--as 
+	--begin
+	--	select nc.Id as Id,  c1.Title StartCity, c2.Title EndCity, MinutesInPath from NeighborCities nc
+	--	join Cities c1 on CityId = c1.Id 
+	--	join Cities c2 on NeighborId = c2.Id 
+	--end
 
-select * from Regions;
-select c.Id, c.Title, r.Title from Cities c
-join Regions r on c.RegionId = r.Id;
+select * from Buses
+select * from BusModels
+select * from BusTypes
+select * from BusSeats
 
-exec GetNeighborCities;
 select * from Flights
-
 select * from MediumPathes
- /*
+
+/*
+ продумать обратные пути в MediumPathes
+ Если есть Армянск - Симферополь, по при создании Симферополь - Армянск путь будет тот же, 
+ но будет Гвардейское - Симферополь, а нужно Симферополь - Гвардейское.
  Для того чтобы понять куда ехать можно добавить поле НазадЛи (IsReverse)
+
  В приложении должен быть поиск между городами: есть ли такой набор городов, чтобы либо с одной стороны в другую или с другой.
  */	
 
 
 
+--select * from Regions;
+--select c.Id, c.Title, r.Title from Cities c
+--join Regions r on c.RegionId = r.Id;
 
