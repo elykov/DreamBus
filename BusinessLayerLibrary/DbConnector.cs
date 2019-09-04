@@ -1,11 +1,7 @@
 ﻿using BusinessLayerLibrary.Services;
+using BusinessLayerLibrary.Services.BusInfoServices;
 using DataAccessLayer.Repositories;
 using DreamBusDBLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayerLibrary
 {
@@ -17,7 +13,10 @@ namespace BusinessLayerLibrary
         public NeighborCityService NeighborCitiesService { get; }
         public MediumPathService MediumPathService { get; }
         public FlightService FlightService { get; }
-
+        public BusSeatService BusSeatService { get; }
+        public BusTypeService BusTypeService { get; }
+        public BusModelService BusModelService { get; }
+        public BusService BusService { get; }
 
         public DbConnector()
         {
@@ -27,6 +26,10 @@ namespace BusinessLayerLibrary
             NeighborCitiesService = new NeighborCityService(new NeighborCityRepository(context));
             FlightService = new FlightService(new FlightRepository(context));
             MediumPathService = new MediumPathService(new MediumPathRepository(context));
+            BusSeatService = new BusSeatService(new BusSeatRepository(context));
+            BusTypeService = new BusTypeService(new BusTypeRepository(context));
+            BusModelService = new BusModelService(new BusModelRepository(context));
+            BusService = new BusService(new BusRepository(context));
         }
     }
 }

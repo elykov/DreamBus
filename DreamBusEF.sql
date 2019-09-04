@@ -97,6 +97,20 @@ begin
 	(31, 1, 2500, 9750, 50, 50)
 end
 
+select * from BusSeats
+
+SET IDENTITY_INSERT IdentityTable ON
+
+insert BusSeats values
+	(1, 1, 10, 0)
+
+SET IDENTITY_INSERT IdentityTable OFF
+
+
+
+delete from BusSeats
+where id = 1
+
 if ((select Count(*) from BusSeats) = 0)
 begin
 	insert BusSeats values

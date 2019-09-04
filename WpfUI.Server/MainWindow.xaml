@@ -278,6 +278,184 @@
                     </ListView>
                 </DockPanel>
             </TabItem>
+
+            <TabItem Header="Сидения">
+                <DockPanel>
+                    <!--<Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        --><!--<Label Grid.ColumnSpan="5" HorizontalContentAlignment="Center">Добавить города-соседы:</Label>
+
+                        <Label Grid.Row="1" Grid.RowSpan="2">Начальный город:</Label>
+                        <Label Grid.Row="3" Grid.RowSpan="2">Конечный город:</Label>
+
+                        <ComboBox IsEditable="True" Name="comboBoxNeighborCityFrom" DisplayMemberPath="Title"
+                                  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"></ComboBox>
+                        <ComboBox IsEditable="True" Name="comboBoxNeighborCityTo" DisplayMemberPath="Title"
+                                  Grid.Column="1" Grid.Row="3" Grid.RowSpan="2"></ComboBox>
+
+                        <Label Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">Время в пути (мин):</Label>
+                        <Label Grid.Column="2" Grid.Row="3" Grid.RowSpan="2">Расстояние (км):</Label>
+
+                        <TextBox Name="textBoxNeighborCityTime" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Margin="5 0"></TextBox>
+                        <TextBox Name="textBoxNeighborCityDistance" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2" Margin="5 0"></TextBox>
+
+                        <Button Name="buttonAddNeighborCities" Margin="10 0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="4">Добавить</Button>--><!--
+                    </Grid>-->
+
+                    <ListView Name="listViewBusSeats">
+                        <!--<ListView.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Редактировать" Command="Edit"/>
+                                        <MenuItem Header="Удалить" Command="Delete"/>
+                                    </ContextMenu>
+                                </ListView.ContextMenu>-->
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"></GridViewColumn>
+                                <GridViewColumn Header="Тип автобуса (Id)" DisplayMemberBinding="{Binding Path=BusTypeId}"></GridViewColumn>
+                                <GridViewColumn Header="Координата Х" DisplayMemberBinding="{Binding Path=XCoord}"></GridViewColumn>
+                                <GridViewColumn Header="Координата Y" DisplayMemberBinding="{Binding Path=YCoord}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Типы автобусов">
+                <DockPanel>
+                    <!--<Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        -->
+                    <!--<Label Grid.ColumnSpan="5" HorizontalContentAlignment="Center">Добавить города-соседы:</Label>
+
+                        <Label Grid.Row="1" Grid.RowSpan="2">Начальный город:</Label>
+                        <Label Grid.Row="3" Grid.RowSpan="2">Конечный город:</Label>
+
+                        <ComboBox IsEditable="True" Name="comboBoxNeighborCityFrom" DisplayMemberPath="Title"
+                                  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"></ComboBox>
+                        <ComboBox IsEditable="True" Name="comboBoxNeighborCityTo" DisplayMemberPath="Title"
+                                  Grid.Column="1" Grid.Row="3" Grid.RowSpan="2"></ComboBox>
+
+                        <Label Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">Время в пути (мин):</Label>
+                        <Label Grid.Column="2" Grid.Row="3" Grid.RowSpan="2">Расстояние (км):</Label>
+
+                        <TextBox Name="textBoxNeighborCityTime" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Margin="5 0"></TextBox>
+                        <TextBox Name="textBoxNeighborCityDistance" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2" Margin="5 0"></TextBox>
+
+                        <Button Name="buttonAddNeighborCities" Margin="10 0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="4">Добавить</Button>-->
+                    <!--
+                    </Grid>-->
+
+                    <ListView Name="listViewBusTypes">
+                        <!--<ListView.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Редактировать" Command="Edit"/>
+                                        <MenuItem Header="Удалить" Command="Delete"/>
+                                    </ContextMenu>
+                                </ListView.ContextMenu>-->
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"></GridViewColumn>
+                                <GridViewColumn Header="Количество мест" DisplayMemberBinding="{Binding Path=PlacesCount}"></GridViewColumn>
+                                <GridViewColumn Header="FloorCount" DisplayMemberBinding="{Binding Path=FloorCount}"></GridViewColumn>
+                                <GridViewColumn Header="BusWidth" DisplayMemberBinding="{Binding Path=BusWidth}"></GridViewColumn>
+                                <GridViewColumn Header="BusHeight" DisplayMemberBinding="{Binding Path=BusHeight}"></GridViewColumn>
+                                <GridViewColumn Header="SeatWidth" DisplayMemberBinding="{Binding Path=SeatWidth}"></GridViewColumn>
+                                <GridViewColumn Header="SeatHeight" DisplayMemberBinding="{Binding Path=SeatHeight}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Модели автобусов">
+                <DockPanel>
+                    <!--<Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        -->
+                    <!--<Label Grid.ColumnSpan="5" HorizontalContentAlignment="Center">Добавить города-соседы:</Label>
+
+                        <Label Grid.Row="1" Grid.RowSpan="2">Начальный город:</Label>
+                        <Label Grid.Row="3" Grid.RowSpan="2">Конечный город:</Label>
+
+                        <ComboBox IsEditable="True" Name="comboBoxNeighborCityFrom" DisplayMemberPath="Title"
+                                  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"></ComboBox>
+                        <ComboBox IsEditable="True" Name="comboBoxNeighborCityTo" DisplayMemberPath="Title"
+                                  Grid.Column="1" Grid.Row="3" Grid.RowSpan="2"></ComboBox>
+
+                        <Label Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">Время в пути (мин):</Label>
+                        <Label Grid.Column="2" Grid.Row="3" Grid.RowSpan="2">Расстояние (км):</Label>
+
+                        <TextBox Name="textBoxNeighborCityTime" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Margin="5 0"></TextBox>
+                        <TextBox Name="textBoxNeighborCityDistance" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2" Margin="5 0"></TextBox>
+
+                        <Button Name="buttonAddNeighborCities" Margin="10 0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="4">Добавить</Button>-->
+                    <!--
+                    </Grid>-->
+
+                    <ListView Name="listViewBusModels">
+                        <!--<ListView.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Редактировать" Command="Edit"/>
+                                        <MenuItem Header="Удалить" Command="Delete"/>
+                                    </ContextMenu>
+                                </ListView.ContextMenu>-->
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"></GridViewColumn>
+                                <GridViewColumn Header="Brand" DisplayMemberBinding="{Binding Path=Brand}"></GridViewColumn>
+                                <GridViewColumn Header="ComfortFactor" DisplayMemberBinding="{Binding Path=ComfortFactor}"></GridViewColumn>
+                                <GridViewColumn Header="FloorCount" DisplayMemberBinding="{Binding Path=BusType.FloorCount}"></GridViewColumn>
+                                <GridViewColumn Header="PlacesCount" DisplayMemberBinding="{Binding Path=BusType.PlacesCount}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </TabItem>
+
+
         </TabControl>
     </Grid>
 </Window>

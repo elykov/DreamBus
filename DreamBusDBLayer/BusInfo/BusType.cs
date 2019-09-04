@@ -1,10 +1,6 @@
 namespace DreamBusDBLayer
 {
-    using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class BusType
     {
@@ -17,8 +13,6 @@ namespace DreamBusDBLayer
 
         public int Id { get; set; }
 
-        public int PlacesCount { get; set; }
-
         public int FloorCount { get; set; }
 
         public int BusWidth { get; set; }
@@ -28,6 +22,8 @@ namespace DreamBusDBLayer
         public int SeatWidth { get; set; }
 
         public int SeatHeight { get; set; }
+
+        public int PlacesCount { get => BusSeats.Count; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BusModel> BusModels { get; set; }

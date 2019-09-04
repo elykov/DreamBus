@@ -29,10 +29,10 @@ namespace DreamBusDBLayer
                 .WithRequired(e => e.Bus)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<BusModel>()
-                .HasMany(e => e.Buses)
-                .WithRequired(e => e.BusModel)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<BusModel>();
+                //.HasMany(e => e.Buses)
+                //.WithRequired(e => e.BusModel)
+                //.WillCascadeOnDelete(false);
 
             modelBuilder.Entity<BusType>()
                 .HasMany(e => e.BusModels)
@@ -44,17 +44,17 @@ namespace DreamBusDBLayer
                 .WithRequired(e => e.BusType)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<City>()
-                .HasMany(e => e.NeighborCities)
-                .WithRequired(e => e.City)
-                .HasForeignKey(e => e.CityId)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<City>();
+                //.HasMany(e => e.NeighborCities)
+                //.WithRequired(e => e.City)
+                //.HasForeignKey(e => e.CityId)
+                //.WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<City>()
-                .HasMany(e => e.NeighborCities1)
-                .WithRequired(e => e.Neighbor)
-                .HasForeignKey(e => e.NeighborId)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<City>()
+            //    .HasMany(e => e.NeighborCities1)
+            //    .WithRequired(e => e.Neighbor)
+            //    .HasForeignKey(e => e.NeighborId)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Flight>()
                 .HasMany(e => e.MediumPathes)

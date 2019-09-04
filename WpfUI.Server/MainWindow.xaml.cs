@@ -61,6 +61,11 @@ namespace WpfUI.Server
             listViewNeighborCities.ItemsSource = DBConnector.NeighborCitiesService.GetAll();
             listViewMediumPathes.ItemsSource = DBConnector.MediumPathService.GetAll();
             listViewFlights.ItemsSource = DBConnector.FlightService.GetAll();
+            listViewBusSeats.ItemsSource = DBConnector.BusSeatService.GetAll();
+            listViewBusTypes.ItemsSource = DBConnector.BusTypeService.GetAll();
+            listViewBusModels.ItemsSource = DBConnector.BusModelService.GetAll();
+
+            
         }
 
         #endregion
