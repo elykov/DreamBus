@@ -32,8 +32,9 @@ namespace DreamBusServer
         protected Thread listenerThread;
         protected ManualResetEvent allDone = new ManualResetEvent(false);
         protected IPEndPoint endPoint;
+        protected Socket listener;
 
-        public abstract byte[] MessageParse(byte[] message);
+        public abstract byte[] MessageParse(byte[] byte_message);
 
         public AsyncTcpServer(IWriter writer)
         {
@@ -46,14 +47,12 @@ namespace DreamBusServer
             listenerThread = new Thread(new ParameterizedThreadStart(Listening));
             listenerThread.Start(endPoint);
             IsServerStarted = true;
-            Writer.WriteMessage(new Informator("Сервер", "Сервер запущен."));
         }
 
         public void StopServer()
         {
             listenerThread?.Abort();
             IsServerStarted = false;
-            Writer.WriteMessage(new Informator("Сервер", "Сервер остановлен."));
         }
 
         /// <summary>
@@ -63,13 +62,14 @@ namespace DreamBusServer
         protected void Listening(object endPoint)
         {
             IPEndPoint localEndPoint = endPoint as IPEndPoint;
-            Socket listener = new Socket(localEndPoint.Address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            Writer.WriteMessage(new Informator("Сервер", $"Прослушивание порта {localEndPoint.Port} началось..."));
+            listener = new Socket(localEndPoint.Address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
             try
             {
                 listener.Bind(localEndPoint);
-                listener.Listen(500);
+                listener.Listen(100);
+                Writer.WriteMessage(new Informator("Сервер", $"Сервер запущен. Прослушивание порта {localEndPoint.Port} началось..."));
+
 
                 while (true)
                 {
@@ -80,25 +80,38 @@ namespace DreamBusServer
             }
             catch (ThreadAbortException ex)
             {
+                Writer.WriteMessage(new Informator("Сервер", "Сервер остановлен."));
+                listener.Close();
                 //Writer.WriteMessage(new Informator("Ошибка сервера", "Listener exception: " + ex.Message));
             }
             catch (Exception ex)
-            {
+            { 
                 Writer.WriteMessage(new Informator("Ошибка сервера", "Undefined exception: " + ex.Message));
-            }
+            } 
         }
 
         protected void AcceptCallback(IAsyncResult ar)
         {
-            allDone.Set();
+            try
+            {
+                allDone.Set();
 
-            Socket listener = (Socket)ar.AsyncState;
-            Socket handler = listener.EndAccept(ar);
+                //Socket listener = (Socket)ar.AsyncState;
+                Socket handler = listener.EndAccept(ar);
 
-            SuperSocket state = new SuperSocket();
-            state.ClientSocket = handler;
-            ClientConnected?.Invoke();
-            handler.BeginReceive(state.data, 0, state.data.Length, 0, new AsyncCallback(ReadCallback), state);
+                SuperSocket state = new SuperSocket();
+                state.ClientSocket = handler;
+                ClientConnected?.Invoke();
+                handler.BeginReceive(state.data, 0, state.data.Length, 0, new AsyncCallback(ReadCallback), state);
+            }
+            catch (ObjectDisposedException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Writer.WriteMessage(new Informator("Ошибка сервера (AcceptCallback)", ex.Message));
+            }
         }
 
         protected void ReadCallback(IAsyncResult ar)

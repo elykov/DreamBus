@@ -10,6 +10,8 @@ namespace DreamBusDBLayer
 
         public int YCoord { get; set; }
 
+        public byte SeatNumber { get; set; }
+
         public virtual BusType BusType { get; set; }
     }
 }

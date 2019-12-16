@@ -30,6 +30,11 @@ namespace WpfUI.Server
             InitNetUIServer();
             DBConnector = new DbConnector();
             Subscribes();
+
+            //this.Hide();
+            //var buswin = new BusWindow(DBConnector.BusTypeService.GetAll().First());
+            //buswin.ShowDialog();
+            //Close();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -64,8 +69,7 @@ namespace WpfUI.Server
             listViewBusSeats.ItemsSource = DBConnector.BusSeatService.GetAll();
             listViewBusTypes.ItemsSource = DBConnector.BusTypeService.GetAll();
             listViewBusModels.ItemsSource = DBConnector.BusModelService.GetAll();
-
-            
+            listViewBuses.ItemsSource = DBConnector.BusService.GetAll();
         }
 
         #endregion

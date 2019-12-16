@@ -22,5 +22,10 @@ namespace DreamBusDBLayer
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Flight> Flights { get; set; }
+
+        public void Qwe()
+        {
+            //BusModel.BusType.
+        }
     }
 }

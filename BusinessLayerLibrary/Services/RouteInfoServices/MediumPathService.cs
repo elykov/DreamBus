@@ -16,9 +16,9 @@ namespace BusinessLayerLibrary.Services
         {
             return new MapperConfiguration(cfg => {
                 cfg.AddExpressionMapping();
-                cfg.CreateMap<MediumPathe, MediumPathDTO>()
-                .ForMember("ArrivalTime", opt => opt.MapFrom(
-                    mp => mp.DepartureTime.Add(new System.TimeSpan(0, mp.NeighborCity.MinutesInPath, 0))));
+                cfg.CreateMap<MediumPathe, MediumPathDTO>();
+                //.ForMember("ArrivalTime", opt => opt.MapFrom(
+                //    mp => mp.DepartureTime.Add(new System.TimeSpan(0, mp.NeighborCity.MinutesInPath, 0))));
                 cfg.CreateMap<MediumPathDTO, MediumPathe>();
             }).CreateMapper();
         }

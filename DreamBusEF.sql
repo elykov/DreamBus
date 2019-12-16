@@ -19,8 +19,11 @@ Create table BusSeats (
 	Id int not null primary key identity,
 	BusTypeId int not null foreign key references BusTypes(Id),
 	XCoord int not null,
-	YCoord int not null
+	YCoord int not null,
+	SeatNumber tinyint not null
 );
+go
+ALTER TABLE BusSeats ADD DEFAULT 0 FOR SeatNumber;
 go
 -- К примеру Богдан и Эталон - Одинаково, а производители разные, также качество - удобство (1 - 5 звезд).
 --alter Table BusModels
@@ -64,11 +67,13 @@ Create Table NeighborCities(
 );
 go
 -- Рейсы: хранят указатель на автобус
--- начало и конец маршрута,  и время прибытия. Время отправления будет в первом маршруте
+-- начало и конец маршрута,  и время прибытия. 
 Create Table Flights(
 	Id int not null primary key identity,
-	BusId int not null foreign key references Buses(Id)
-	-- Точка отправления, точка прибытия, время отправления и время в конечной брать в MediumPathes.
+	BusId int not null foreign key references Buses(Id),
+	DepartureTime Time not null, -- Время отправления. Время прибытия берется из NeighborCities.MinutesInPath + DepartureTime
+	IsReverse bit default 0 -- Если 1, то не Армянск - Симферополь, а Симферополь - Армянск
+	-- Точка отправления, точка прибытия и время в конечной брать в MediumPathes.
 );
 go
 /*
@@ -80,51 +85,72 @@ Create Table MediumPathes(
 	Id int not null primary key identity,
 	FlightId int not null foreign key references Flights(Id),
 	PathNum int not null, -- Каким по счету будет проходить путь.
-	PathId int not null foreign key references NeighborCities(Id),
-	DepartureTime Time not null -- время прибытия берется из NeighborCities.MinutesInPath + DepartureTime
+	PathId int not null foreign key references NeighborCities(Id)
+);
+go
+Create Table Users(
+	Id int primary key identity,
+	[Name] nvarchar(50) not null,
+	[Password] nvarchar(50) not null,
+	[Email] nvarchar(50),
+	[PhoneNumber] nvarchar(15)
+);
+go
+-- Билеты: Хранит покупателя, цену, рейс, дату, города начала и конца пути и место в автобусе.
+Create Table Tickets(
+	Id int not null primary key identity,
+	UserId int not null foreign key references Users(Id),
+	Price money not null,
+	FlightId int not null foreign key references Flights(Id),
+	[Date] Date not null,
+	StartCityId int not null foreign key references MediumPathes(Id),
+	EndCityId int not null foreign key references MediumPathes(Id),
+	FinishTime DateTime not null,
+	Place int not null,
+	IsActive bit default 1 -- Если 0 - история
 );
 go
 
 if ((select Count(*) from BusTypes) = 0)
 begin
-	insert BusTypes values 
-	(31, 1, 2500, 9750, 50, 50)
+	insert BusTypes (FloorCount, BusWidth, BusHeight, SeatWidth, SeatHeight) values 
+	(1, 2500, 9750, 50, 50)
 end
 
 if ((select Count(*) from BusSeats) = 0)
 begin
 	insert BusSeats values
-	(1, 10, 0),
-	(1, 10, 50),
-	(1, 10, 100),
-	(1, 10, 150),
-	(1, 10, 200),
-	(1, 90, 0),
-	(1, 90, 50),
-	(1, 190, 0),
-	(1, 190, 50),
-	(1, 190, 150),
-	(1, 190, 200),
-	(1, 250, 0),
-	(1, 250, 50),
-	(1, 250, 150),
-	(1, 250, 200),
-	(1, 320, 0),
-	(1, 320, 50),
-	(1, 320, 150),
-	(1, 320, 200),
-	(1, 500, 0),
-	(1, 500, 50),
-	(1, 500, 150),
-	(1, 500, 200),
-	(1, 600, 0),
-	(1, 600, 50),
-	(1, 600, 150),
-	(1, 600, 200),
-	(1, 650, 0),
-	(1, 650, 50),
-	(1, 650, 150),
-	(1, 650, 200)
+	(1, 10, 0, 1),
+	(1, 10, 50, 2),
+	(1, 10, 100, 3),
+	(1, 10, 150, 4),
+	(1, 10, 200, 5),
+	(1, 90, 0, 5),
+	(1, 90, 50, 6),
+	(1, 190, 0, 7),
+	(1, 190, 50, 8),
+	(1, 190, 150, 9),
+	(1, 190, 200, 10),
+	(1, 250, 0, 11),
+	(1, 250, 50, 12),
+	(1, 250, 150, 13),
+	(1, 250, 200, 14),
+	(1, 320, 0, 15),
+	(1, 320, 50, 16),
+	(1, 320, 150, 17),
+	(1, 320, 200, 18),
+	(1, 500, 0, 19),
+	(1, 500, 50, 20),
+	(1, 500, 150, 21),
+	(1, 500, 200, 22),
+	(1, 600, 0, 23),
+	(1, 600, 50, 24),
+	(1, 600, 150, 25),
+	(1, 600, 200, 26),
+	(1, 650, 0, 27),
+	(1, 650, 50, 28),
+	(1, 650, 150, 29),
+	(1, 650, 200, 30)
 end;
 
 if ((select Count(*) from BusModels) = 0)
@@ -139,83 +165,102 @@ begin
 	(1, 'AA 0001 KP')
 end
 
-insert Regions values 
-	('Киевская область'),
-	('Львовская область'),
-	('Херсонская область'),
-	('Одесская область'),
-	('Сумская область'),
-	('Николаевская область'),
-	('АР Крым'),
-	('Винницкая область'),
-	('Харьковская область'),
-	('Днепровская область'),
-	('Запорожская область'),
-	('Ужгородская область');
+if ((select Count(*) from Regions) = 0)
+begin
+	insert Regions values 
+		('Киевская область'),
+		('Львовская область'),
+		('Херсонская область'),
+		('Одесская область'),
+		('Сумская область'),
+		('Николаевская область'),
+		('АР Крым'),
+		('Винницкая область'),
+		('Харьковская область'),
+		('Днепровская область'),
+		('Запорожская область'),
+		('Ужгородская область');
+end
 
-insert Cities values
-	('Киев', 1),
-	('Львов', 2),
-	('Херсон', 3),
-	('Одесса', 4),
-	('Сумы', 5),
-	('Николаев', 6),
-	('Керчь', 7),
-	('Феодосия', 7),
-	('Армянск',	7),
-	('Красноперекопск',	7),
-	('Ишунь', 7),
-	('Воронцовка', 7),
-	('Ильинка', 7),
-	('Правда', 7),
-	('Матвеевка', 7),
-	('Первомайское', 7),
-	('Гришино', 7),
-	('Войково', 7),
-	('Воронцовка', 7),
-	('Трактовое', 7),
-	('Гвардейское', 7),
-	('Симферополь',	7),
-	('Приятное свидание', 7),
-	('Тополи', 7),
-	('Бахчисарай', 7),
-	('Железнодорожное', 7),
-	('Верхнесадовое', 7),
-	('Поворотное', 7),
-	('Инкерман', 7),
-	('Севастополь',	7);
+if ((select Count(*) from Cities) = 0)
+begin
+	insert Cities values
+		('Киев', 1),
+		('Львов', 2),
+		('Херсон', 3),
+		('Одесса', 4),
+		('Сумы', 5),
+		('Николаев', 6),
+		('Керчь', 7),
+		('Феодосия', 7),
+		('Армянск',	7),
+		('Красноперекопск',	7),
+		('Ишунь', 7),
+		('Воронцовка', 7),
+		('Ильинка', 7),
+		('Правда', 7),
+		('Матвеевка', 7),
+		('Первомайское', 7),
+		('Гришино', 7),
+		('Войково', 7),
+		('Воронцовка', 7),
+		('Трактовое', 7),
+		('Гвардейское', 7),
+		('Симферополь',	7),
+		('Приятное свидание', 7),
+		('Тополи', 7),
+		('Бахчисарай', 7),
+		('Железнодорожное', 7),
+		('Верхнесадовое', 7),
+		('Поворотное', 7),
+		('Инкерман', 7),
+		('Севастополь',	7);
+end
 
-insert NeighborCities values
-	(7, 11, 25),
-	(11, 14, 7),
-	(14, 15, 13),
-	(15, 16, 8),
-	(16, 17, 7),
-	(17, 18, 4),
-	(18, 19, 3),
-	(19, 20, 20),
-	(20, 21, 20),
-	(21, 23, 25),
-	(23, 24, 25),
-	(24, 8, 15);
+if ((select Count(*) from NeighborCities) = 0)
+begin
+	insert NeighborCities values
+		(7, 11, 25),
+		(11, 14, 7),
+		(14, 15, 13),
+		(15, 16, 8),
+		(16, 17, 7),
+		(17, 18, 4),
+		(18, 19, 3),
+		(19, 20, 20),
+		(20, 21, 20),
+		(21, 23, 25),
+		(23, 24, 25),
+		(24, 8, 15);
+end
 
-insert Flights values 
-	(1), -- Армянск - Красноперекопск (8.00)
-	(1) -- Красноперекопск - Армянск (8.30)
+if ((select Count(*) from Flights) = 0)
+begin
+	insert Flights values 
+		(1, '8:00:00', 0), -- Армянск - Красноперекопск (8.00)
+		(1, '8:30:00', 1) -- Красноперекопск - Армянск (8.30)
 	--(), -- Армянск - Симферополь
+end
+
 
 -- Создание маршрута Армянск - Красноперекопск
-insert MediumPathes values  
-	(1, 0, 4, '8:00:00')
-
+if ((select Count(*) from MediumPathes) = 0)
+begin
+	insert MediumPathes values  
+		(1, 0, 4)
+end
 
 --create procedure GetNeighborCities
-	--as 
-	--begin
-	--	select nc.Id as Id,  c1.Title StartCity, c2.Title EndCity, MinutesInPath from NeighborCities nc
-	--	join Cities c1 on CityId = c1.Id 
-	--	join Cities c2 on NeighborId = c2.Id 
-	--end
+--	as 
+--	begin
+--		select nc.Id as Id,  c1.Title StartCity, c2.Title EndCity, MinutesInPath from NeighborCities nc
+--		join Cities c1 on CityId = c1.Id 
+--		join Cities c2 on NeighborId = c2.Id 
+--	end
+
+	exec GetNeighborCities
+
+use DreamBusDB;
 
 select * from Buses
 select * from BusModels
@@ -224,6 +269,10 @@ select * from BusSeats
 
 select * from Flights
 select * from MediumPathes
+
+--update BusTypes
+--set BusWidth = 975, BusHeight = 250
+--where id = 1
 
 /*
  продумать обратные пути в MediumPathes

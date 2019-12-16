@@ -18,6 +18,10 @@ namespace DreamBusDBLayer
 
         public int BusId { get; set; }
 
+        public bool IsReverse { get; set; }
+
+        public TimeSpan DepartureTime { get; set; }
+
         public virtual Bus Bus { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

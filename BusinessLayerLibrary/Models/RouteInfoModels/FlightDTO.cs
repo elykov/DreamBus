@@ -11,6 +11,8 @@ namespace BusinessLayerLibrary.Models
         public int BusId { get; set; }
         public Bus Bus { get; set; }
 
+        public TimeSpan DepartureTime { get; set; }
+
         public City StartCity
         {
             get => MediumPathes.Where(mp => mp.PathNum == 0).FirstOrDefault().NeighborCity.City;
@@ -28,16 +30,12 @@ namespace BusinessLayerLibrary.Models
             }
         }
 
-        public TimeSpan DepartureTime
-        {
-            get => MediumPathes.Where(mp => mp.PathNum == 0).FirstOrDefault().DepartureTime;
-        }
         public TimeSpan ArrivalTime
         {
             get
             {
                 var mp = MediumPathes.Aggregate((e1, e2) => e1.PathNum > e2.PathNum ? e1 : e2);
-                return mp.DepartureTime.Add(new TimeSpan(0, mp.NeighborCity.MinutesInPath, 0));
+                return this.DepartureTime.Add(new TimeSpan(0, mp.NeighborCity.MinutesInPath, 0));
             }       
         }
 

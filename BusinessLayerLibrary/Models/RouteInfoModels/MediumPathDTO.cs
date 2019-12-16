@@ -16,10 +16,6 @@ namespace BusinessLayerLibrary.Models
 
         public int PathId { get; set; } // id to NeighborCity
 
-        public TimeSpan DepartureTime { get; set; }
-
-        public TimeSpan ArrivalTime { get; set; }
-
         public Flight Flight { get; set; }
 
         public NeighborCity NeighborCity { get; set; }

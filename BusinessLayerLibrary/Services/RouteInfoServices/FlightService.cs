@@ -18,10 +18,12 @@ namespace BusinessLayerLibrary.Services
             return new MapperConfiguration(cfg =>
             {
                 cfg.AddExpressionMapping();
-                cfg.CreateMap<Flight, FlightDTO>()
-                .ForMember("DepartureTime", opt => opt.MapFrom(
-                    flight => flight.MediumPathes.
-                                Where(mp => mp.PathNum == 0).FirstOrDefault().DepartureTime));
+                cfg.CreateMap<Flight, FlightDTO>();
+
+                //.ForMember("DepartureTime", opt => opt.MapFrom(
+                //    flight => flight.MediumPathes.
+                //                Where(mp => mp.PathNum == 0).FirstOrDefault().DepartureTime));
+
                 //.ForMember("StartCity", opt => opt.MapFrom(
                 //    flight => flight.MediumPathes.
                 //        Where(mp => mp.PathNum == 0).FirstOrDefault().NeighborCity.City));

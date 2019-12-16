@@ -25,8 +25,6 @@ namespace DreamBusDBLayer
 
         public int PathId { get; set; }
 
-        public TimeSpan DepartureTime { get; set; }
-
         public virtual Flight Flight { get; set; }
 
         public virtual NeighborCity NeighborCity { get; set; }
