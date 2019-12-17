@@ -11,6 +11,8 @@ namespace BusinessLayerLibrary.Models
         public int BusId { get; set; }
         public Bus Bus { get; set; }
 
+        public bool IsReverse { get; set; }
+
         public TimeSpan DepartureTime { get; set; }
 
         public City StartCity
